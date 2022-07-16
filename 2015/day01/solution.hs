@@ -1,4 +1,4 @@
-import System.Directory.Internal.Prelude (getArgs)
+import System.Environment (getArgs)
 
 main :: IO ()
 main = do
