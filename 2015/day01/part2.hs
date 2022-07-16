@@ -1,3 +1,4 @@
+main :: IO ()
 main = do
   interact (show . findBasement)
 
