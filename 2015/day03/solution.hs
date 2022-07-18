@@ -8,15 +8,14 @@ main = do
   print $ part1 input
 
 part1 :: String -> Int
-part1 input =
-  length . fst $
-    foldl
+part1 =
+  length . fst
+    . foldl
       ( \(visited, (x, y)) dir ->
           let newPos = move dir (x, y)
            in (Set.insert newPos visited, newPos)
       )
       (Set.singleton (0, 0), (0, 0))
-      input
 
 move :: Char -> (Int, Int) -> (Int, Int)
 move dir (x, y) = case dir of
