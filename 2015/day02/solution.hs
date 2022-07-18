@@ -5,12 +5,21 @@ main :: IO ()
 main = do
   (input : _) <- getArgs
   input <- readFile input
-  print $ part1 input
-  print $ part2 input
+  let presents = map (parseAsPresent . splitOnChar 'x') $ lines input
+  print $ part1 presents
+  print $ part2 presents
 
--- data Present = Present Int Int Int deriving (Show)
+part1 :: [Present] -> Int
+part1 = sum . map calculateWrappingPaperArea
+
+part2 :: [Present] -> Int
+part2 = sum . map calculateRibbonLength
 
 type Present = (Int, Int, Int)
+
+parseAsPresent :: [String] -> Present
+parseAsPresent [w, h, l] = (read w, read h, read l)
+parseAsPresent _ = error "incorrect input"
 
 calculateWrappingPaperArea :: Present -> Int
 calculateWrappingPaperArea (w, h, l) = 2 * s1 + 2 * s2 + 2 * s3 + minimum [s1, s2, s3]
@@ -24,27 +33,9 @@ calculateRibbonLength (w, h, l) = 2 * s1 + 2 * s2 + w * h * l
   where
     [s1, s2] = take 2 $ sort [w, h, l]
 
-splitOnChar :: Char -> String -> [Int]
+splitOnChar :: Char -> String -> [String]
 splitOnChar c s = case dropWhile (== c) s of
   "" -> []
-  s' -> read w : splitOnChar c s''
+  s' -> w : splitOnChar c s''
     where
       (w, s'') = break (== c) s'
-
-part1 :: String -> Int
-part1 input =
-  sum
-    . map
-      ( (calculateWrappingPaperArea . \[w, h, l] -> (w, h, l))
-          . splitOnChar 'x'
-      )
-    $ lines input
-
-part2 :: String -> Int
-part2 input =
-  sum
-    . map
-      ( (calculateRibbonLength . \[w, h, l] -> (w, h, l))
-          . splitOnChar 'x'
-      )
-    $ lines input
