@@ -4,8 +4,7 @@ import System.Environment (getArgs)
 main :: IO ()
 main = do
   (input : _) <- getArgs
-  input <- readFile input
-  let presents = map (parseAsPresent . splitOnChar 'x') $ lines input
+  presents <- map (parseAsPresent . splitOnChar 'x') . lines <$> readFile input
   print $ part1 presents
   print $ part2 presents
 
