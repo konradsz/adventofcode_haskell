@@ -1,10 +1,14 @@
+import Data.Char (digitToInt)
 import Data.List (group)
+import System.Environment (getArgs)
 
 main :: IO ()
 main = do
-  let input = [1, 3, 2, 1, 1, 3, 1, 1, 1, 2]
-  print $ part1 input
-  print $ part2 input
+  (input : _) <- getArgs
+  input <- readFile input
+  let initial = map digitToInt input
+  print $ part1 initial
+  print $ part2 initial
 
 part1 :: [Int] -> Int
 part1 input = length $ grow 40 input
