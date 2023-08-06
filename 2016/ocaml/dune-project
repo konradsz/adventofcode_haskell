@@ -1,0 +1,7 @@
+(lang dune 3.9)
+
+(name aoc_ocaml)
+
+(generate_opam_files true)
+
+(authors "Konrad Szymoniak")
