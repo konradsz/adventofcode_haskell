@@ -1,9 +1,15 @@
-# Advent of Code - in Haskell!
-This repository documents my struggles solving Advent of Code problems in Haskell - because what is a better way to learn a new language?
+# Advent of Code - using functional languages!
 
-I don't recommend treating the code as a good example; on the contrary, it would probably make experienced Haskeller cry.
+This repository documents my struggles solving Advent of Code problems in functional languages.
 
-## How to compile and run
+## How to compile and run OCaml solutions
+
+```
+dune exec dayXX dayXX/input
+```
+
+## How to compile and run Haskell solutions
+
 ```
 ghc --make solution.hs
 ./solution input
