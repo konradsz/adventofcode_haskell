@@ -67,4 +67,4 @@ let part1 =
   abs x + abs y
 
 let part2 = find_duplicate VisitedSet.empty (North, 0, 0) input
-let () = printf "Part 1: %d\nPart 2: %d\n" part1 part2
+let _ = printf "Part 1: %d\nPart 2: %d\n" part1 part2

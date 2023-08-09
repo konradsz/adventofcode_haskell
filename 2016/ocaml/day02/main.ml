@@ -68,4 +68,4 @@ let keypad =
   |> add (2, 4) "D"
 
 let part2 = solve keypad
-let () = printf "Part 1: %s\nPart 2: %s\n" part1 part2
+let _ = printf "Part 1: %s\nPart 2: %s\n" part1 part2
