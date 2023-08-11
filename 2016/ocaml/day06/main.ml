@@ -18,25 +18,15 @@ let () =
   in
   List.iter count_in_word input
 
-let index_of_max_element lst =
-  let rec tmp lst current_max current_idx max_idx =
-    match lst with
-    | [] -> max_idx
-    | h :: t ->
-        if h > current_max then tmp t h (current_idx + 1) current_idx
-        else tmp t current_max (current_idx + 1) max_idx
-  in
-  tmp lst 0 0 0
-
 let index_of_element pred start lst =
-  let rec tmp lst current_max current_idx max_idx =
+  let rec aux lst current_max current_idx max_idx =
     match lst with
     | [] -> max_idx
     | h :: t ->
-        if pred h current_max then tmp t h (current_idx + 1) current_idx
-        else tmp t current_max (current_idx + 1) max_idx
+        if pred h current_max then aux t h (current_idx + 1) current_idx
+        else aux t current_max (current_idx + 1) max_idx
   in
-  tmp lst start 0 0
+  aux lst start 0 0
 
 let index_of_most_common_el =
   index_of_element (fun new_value old_value -> new_value > old_value) min_int
